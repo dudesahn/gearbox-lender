@@ -18,15 +18,15 @@ dependencies:
     github: yearn/tokenized-strategy
     ref: v3.0.2
     contracts_folder: src
-    exclude: 
-     - test/**/*
+    exclude:
+      - test/**/*
 
   - name: periphery
     github: yearn/tokenized-strategy-periphery
     ref: master
     contracts_folder: src
-    exclude: 
-     - test/**/*
+    exclude:
+      - test/**/*
 
 solidity:
   import_remapping:
@@ -43,4 +43,4 @@ hardhat:
   fork:
     ethereum:
       mainnet:
-        upstream_provider: infura
+        upstream_provider: alchemy

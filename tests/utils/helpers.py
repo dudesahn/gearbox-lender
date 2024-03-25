@@ -42,6 +42,14 @@ def withdraw_and_check(strategy, asset, amount, user):
     assert asset.balanceOf(user) - balance_before == amount
 
 
+def withdraw_and_check_lossy(strategy, asset, amount, user):
+    balance_before = asset.balanceOf(user)
+
+    strategy.withdraw(amount, user, user, 1, sender=user)
+
+    assert asset.balanceOf(user) - balance_before == pytest.approx(amount, abs=1)
+
+
 def check_normal_flow(chain, strategy, asset, amount, user):
     # Deposit into the strategy
     deposit(strategy, asset, amount, user)

@@ -9,6 +9,7 @@ For a more complete overview of how the Tokenized Strategies work please visit t
 ## How to start
 
 ### Requirements
+
     Python >=3.8.0, <=3.10
     Yarn
     Node.js >=14
@@ -31,15 +32,15 @@ Tip: You can make them persistent by adding the variables in ~/.env (ENVVAR=... 
 ### Install Ape and all dependencies
 
     pip install -r requirements.txt
-    
+
     yarn
-    
+
     ape plugins install .
-    
+
     ape compile
-    
+
     ape test
-    
+
 ### Set your environment Variables
 
     export WEB3_INFURA_PROJECT_ID=your_infura_api_key
