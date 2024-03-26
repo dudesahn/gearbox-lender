@@ -6,6 +6,7 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 interface IStaking is IERC20 {
     // View functions
     function stakingToken() external view returns (address);
+    function paused() external view returns (bool);
 
     // User functions
     function deposit(uint256 amount) external;

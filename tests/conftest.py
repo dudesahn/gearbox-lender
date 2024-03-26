@@ -60,6 +60,8 @@ def tokens():
         "weth": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
         "usdc": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
         "wbtc": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+        "gho": "0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f",
+        "dai": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
     }
     yield tokens
 
@@ -70,6 +72,8 @@ def d_tokens():
         "weth": "0xda0002859B2d05F66a753d8241fCDE8623f26F4f",
         "usdc": "0xda00000035fef4082F78dEF6A8903bee419FbF8E",
         "wbtc": "0xda00010eDA646913F273E10E7A5d1F659242757d",
+        "gho": "0x4d56c9cBa373AD39dF69Eb18F076b7348000AE09",
+        "dai": "0xe7146F53dBcae9D6Fa3555FE502648deb0B2F823",
     }
     yield d_tokens
 
@@ -80,6 +84,8 @@ def staking_pools():
         "weth": "0x0418fEB7d0B25C411EB77cD654305d29FcbFf685",
         "usdc": "0x9ef444a6d7F4A5adcd68FD5329aA5240C90E14d2",
         "wbtc": "0xA8cE662E45E825DAF178DA2c8d5Fae97696A788A",
+        "gho": "0xE2037090f896A858E3168B978668F22026AC52e7",
+        "dai": "0xC853E4DA38d9Bd1d01675355b8c8f3BBC1451973",
     }
     yield staking_pools
 

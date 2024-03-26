@@ -27,9 +27,8 @@ contract StrategyGearboxLender is Base4626Compounder, TradeFactorySwapper {
         address _vault,
         address _staking
     ) Base4626Compounder(_asset, _name, _vault) {
-        require(_vault == IStaking(_staking).stakingToken(), "token mismatch");
-
         staking = IStaking(_staking);
+        require(_vault == staking.stakingToken(), "token mismatch");
 
         ERC20(_vault).safeApprove(_staking, type(uint256).max);
     }
@@ -66,8 +65,15 @@ contract StrategyGearboxLender is Base4626Compounder, TradeFactorySwapper {
     function availableDepositLimit(
         address _owner
     ) public view virtual override returns (uint256) {
-        // Return the max amount the vault will allow for deposits.
-        return vault.maxDeposit(address(this));
+        // If pool is paused, do not allow deposits.
+        return staking.paused() ? 0 : vault.maxDeposit(address(this));
+    }
+
+    function availableWithdrawLimit(
+        address /*_owner*/
+    ) public view override returns (uint256) {
+        // Cannot withdraw from the pool when paused.
+        return staking.paused() ? balanceOfAsset() : balanceOfAsset() + vaultsMaxWithdraw();
     }
 
     /* ========== TRADE FACTORY FUNCTIONS ========== */
