@@ -2,7 +2,7 @@
 pragma solidity 0.8.18;
 
 import {StrategyGearboxLender} from "./StrategyGearboxLender.sol";
-import {IStrategyInterface} from "../../interfaces/IStrategyInterface.sol";
+import {IStrategyInterface} from "./interfaces/IStrategyInterface.sol";
 
 contract GearboxLenderFactory {
     /// @notice Revert message for when a strategy has already been deployed.
