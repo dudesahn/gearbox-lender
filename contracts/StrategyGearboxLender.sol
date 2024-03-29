@@ -47,7 +47,7 @@ contract StrategyGearboxLender is Base4626Compounder, TradeFactorySwapper {
     }
 
     function _unStake(uint256 _amount) internal virtual override {
-        staking.withdraw(balanceOfStake());
+        staking.withdraw(convertToShares(_amount));
     }
 
     function vaultsMaxWithdraw()
@@ -60,13 +60,6 @@ contract StrategyGearboxLender is Base4626Compounder, TradeFactorySwapper {
         // We need to use the staking contract address for maxRedeem
         // Convert the vault shares to `asset`.
         return vault.convertToAssets(vault.maxRedeem(address(staking)));
-    }
-
-    function availableDepositLimit(
-        address _owner
-    ) public view virtual override returns (uint256) {
-        // If pool is paused, do not allow deposits.
-        return staking.paused() ? 0 : vault.maxDeposit(address(this));
     }
 
     function availableWithdrawLimit(
