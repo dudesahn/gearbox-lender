@@ -62,13 +62,6 @@ contract StrategyGearboxLender is Base4626Compounder, TradeFactorySwapper {
         return vault.convertToAssets(vault.maxRedeem(address(staking)));
     }
 
-    function availableWithdrawLimit(
-        address /*_owner*/
-    ) public view override returns (uint256) {
-        // Cannot withdraw from the pool when paused.
-        return staking.paused() ? balanceOfAsset() : balanceOfAsset() + vaultsMaxWithdraw();
-    }
-
     /* ========== TRADE FACTORY FUNCTIONS ========== */
 
     /**
