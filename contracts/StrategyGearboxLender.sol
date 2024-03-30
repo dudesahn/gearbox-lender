@@ -43,10 +43,12 @@ contract StrategyGearboxLender is Base4626Compounder, TradeFactorySwapper {
     }
 
     function _stake() internal override {
+        // deposit any loose vault tokens to the staking contract
         staking.deposit(balanceOfVault());
     }
 
     function _unStake(uint256 _amount) internal virtual override {
+        // _amount is already in vault shares, no need to convert
         staking.withdraw(_amount);
     }
 
