@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0
 pragma solidity 0.8.18;
 
-import {Base4626Compounder, ERC20, SafeERC20} from "@periphery/Bases/4626Compounder/Base4626Compounder.sol";
+import {Base4626Compounder, ERC20, SafeERC20, Math} from "@periphery/Bases/4626Compounder/Base4626Compounder.sol";
 import {TradeFactorySwapper} from "@periphery/swappers/TradeFactorySwapper.sol";
 import {IStaking} from "./interfaces/GearboxInterfaces.sol";
 
@@ -47,7 +47,12 @@ contract StrategyGearboxLender is Base4626Compounder, TradeFactorySwapper {
     }
 
     function _unStake(uint256 _amount) internal virtual override {
-        staking.withdraw(vault.convertToShares(_amount));
+        // we can't withdraw more than our entire staked balance
+        uint256 sharesToWithdraw = Math.min(
+            balanceOfStake(),
+            vault.convertToShares(_amount)
+        );
+        staking.withdraw(sharesToWithdraw);
     }
 
     function vaultsMaxWithdraw()
