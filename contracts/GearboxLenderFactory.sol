@@ -32,7 +32,7 @@ contract GearboxLenderFactory {
      * @dev This will set the msg.sender to all of the permissioned roles.
      * @param _asset The underlying asset for the lender to use.
      * @param _name The name for the lender to use.
-     * @return . The address of the new lender.
+     * @return The address of the new lender.
      */
     function newGearboxLender(
         address _asset,

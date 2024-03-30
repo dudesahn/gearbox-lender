@@ -47,7 +47,7 @@ contract StrategyGearboxLender is Base4626Compounder, TradeFactorySwapper {
     }
 
     function _unStake(uint256 _amount) internal virtual override {
-        staking.withdraw(convertToShares(_amount));
+        staking.withdraw(vault.convertToShares(_amount));
     }
 
     function vaultsMaxWithdraw()
