@@ -13,6 +13,7 @@ contract GearboxLenderFactory {
     address public management;
     address public performanceFeeRecipient;
     address public keeper;
+    address internal immutable emergencyAdmin;
 
     /// @notice Track the deployments. asset => pool => strategy
     mapping(address => address) public deployments;
@@ -20,11 +21,13 @@ contract GearboxLenderFactory {
     constructor(
         address _management,
         address _performanceFeeRecipient,
-        address _keeper
+        address _keeper,
+        address _emergencyAdmin
     ) {
         management = _management;
         performanceFeeRecipient = _performanceFeeRecipient;
         keeper = _keeper;
+        emergencyAdmin = _emergencyAdmin;
     }
 
     /**
@@ -53,6 +56,8 @@ contract GearboxLenderFactory {
         newStrategy.setKeeper(keeper);
 
         newStrategy.setPendingManagement(management);
+
+        newStrategy.setEmergencyAdmin(emergencyAdmin);
 
         emit NewGearboxLender(address(newStrategy), _asset);
 
